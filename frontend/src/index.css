@@ -1,0 +1,13 @@
+@import 'antd/dist/reset.css';
+
+.row-completed {
+  background-color: #f6ffed !important; /* light green */
+}
+
+.row-delayed {
+  background-color: #fff1f0 !important; /* light red */
+}
+
+.row-due-soon {
+  background-color: #fffbe6 !important; /* light yellow */
+}

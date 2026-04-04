@@ -1,0 +1,17 @@
+{
+  "scripts": {
+    "dev:frontend": "npm run dev --prefix frontend",
+    "dev:backend": "npm run dev --prefix backend",
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\""
+  },
+  "dependencies": {
+    "@ant-design/icons": "^6.1.0",
+    "antd": "^6.3.1",
+    "axios": "^1.13.6",
+    "dayjs": "^1.11.19",
+    "react-router-dom": "^7.13.1"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}
