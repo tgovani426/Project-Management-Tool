@@ -209,11 +209,9 @@ const Dashboard = () => {
                                 <Option value="Analytics">Analytics</Option>
                             </Select>
                         </Space>
-                        {user?.role === 'ADMIN' && (
-                            <Button type="primary" icon={<PlusOutlined />} onClick={() => { setEditingTask(null); setModalVisible(true); }}>
-                                Add Task
-                            </Button>
-                        )}
+                        <Button type="primary" icon={<PlusOutlined />} onClick={() => { setEditingTask(null); setModalVisible(true); }}>
+                            Add Task
+                        </Button>
                     </div>
 
                     <TaskTable

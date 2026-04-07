@@ -44,7 +44,7 @@ const TaskTable = ({ tasks, loading, onEdit, onDelete, onViewHistory }) => {
             onFilter: (value, record) => record.track === value,
         },
         {
-            title: 'Assigned By',
+            title: 'Created By',
             dataIndex: ['createdBy', 'name'],
             key: 'createdBy',
             filters: Array.from(new Set(tasks.map(t => t.createdBy?.name))).filter(Boolean).map(name => ({ text: name, value: name })),

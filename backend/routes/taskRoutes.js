@@ -6,7 +6,7 @@ const { admin } = require('../middleware/roleMiddleware');
 
 router.route('/')
     .get(protect, getTasks)
-    .post(protect, admin, createTask);
+    .post(protect, createTask);
 
 router.route('/bulk-import')
     .post(protect, admin, bulkImportTasks);
