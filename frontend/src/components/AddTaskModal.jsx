@@ -63,16 +63,15 @@ const AddTaskModal = ({ visible, onCancel, onSave, editingTask, users }) => {
                     <Select>
                         <Option value="Java MVC">Java MVC</Option>
                         <Option value="Java MS">Java MS</Option>
-                        <Option value="Mobile Citizen">Mobile Citizen</Option>
-                        <Option value="Mobile Official">Mobile Official</Option>
-                        <Option value="React">React</Option>
-                        <Option value="Angular">Angular</Option>
+                        <Option value="RajCop Mobile Citizen">RajCop Mobile Citizen</Option>
+                        <Option value="RajCop Mobile Official">RajCop Mobile Official</Option>
+                        <Option value="React/Angular">React/Angular</Option>
                         <Option value="AIML">AIML</Option>
                         <Option value="QA">QA</Option>
                         <Option value="DB">DB</Option>
                         <Option value="Infra">Infra</Option>
-                        <Option value="BA">BA</Option>
                         <Option value="Analytics">Analytics</Option>
+                        <Option value="BA">BA</Option>
                     </Select>
                 </Form.Item>
 
