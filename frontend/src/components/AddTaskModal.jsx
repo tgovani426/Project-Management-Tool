@@ -66,7 +66,7 @@ const AddTaskModal = ({ visible, onCancel, onSave, editingTask, users }) => {
                         <Option value="RajCop Mobile Citizen">RajCop Mobile Citizen</Option>
                         <Option value="RajCop Mobile Official">RajCop Mobile Official</Option>
                         <Option value="React/Angular">React/Angular</Option>
-                        <Option value="AIML">AIML</Option>
+                        <Option value="AIML">AI/ML</Option>
                         <Option value="QA">QA</Option>
                         <Option value="DB">DB</Option>
                         <Option value="Infra">Infra</Option>
