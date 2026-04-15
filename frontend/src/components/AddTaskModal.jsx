@@ -4,6 +4,15 @@ import dayjs from 'dayjs';
 
 const { Option } = Select;
 
+const ASSIGNED_BY_LIST = [
+    "Rajesh Kumar",
+    "Suresh Mehta",
+    "Priya Sharma",
+    "Anil Patel",
+    "Kavita Verma",
+    "Amit Singh"
+];
+
 const AddTaskModal = ({ visible, onCancel, onSave, editingTask, users }) => {
     const [form] = Form.useForm();
 
@@ -129,6 +138,17 @@ const AddTaskModal = ({ visible, onCancel, onSave, editingTask, users }) => {
                         <Option value="Medium">Medium</Option>
                         <Option value="High">High</Option>
                         <Option value="Critical">Critical</Option>
+                    </Select>
+                </Form.Item>
+
+                <Form.Item
+                    name="assignedBy"
+                    label="Assigned By"
+                >
+                    <Select showSearch optionFilterProp="children" placeholder="Select who assigned this task">
+                        {ASSIGNED_BY_LIST.map(name => (
+                            <Option key={name} value={name}>{name}</Option>
+                        ))}
                     </Select>
                 </Form.Item>
 

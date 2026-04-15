@@ -26,7 +26,7 @@ const getTasks = async (req, res) => {
 };
 
 const createTask = async (req, res) => {
-    const { title, track, description, comments, startDate, tentativeEndDate, priority, assignee } = req.body;
+    const { title, track, description, comments, startDate, tentativeEndDate, priority, assignee, assignedBy } = req.body;
 
     if (!title || !track || !startDate || !tentativeEndDate || !assignee) {
         return res.status(400).json({ message: 'Please provide required fields' });
@@ -39,6 +39,7 @@ const createTask = async (req, res) => {
                 track,
                 description,
                 comments,
+                assignedBy,
                 startDate: new Date(startDate),
                 tentativeEndDate: new Date(tentativeEndDate),
                 priority,
@@ -64,6 +65,7 @@ const createTask = async (req, res) => {
         res.status(201).json(mapTaskForFrontend(task));
     } catch (err) {
         res.status(500).json({ message: 'Failed to create task', error: err.message });
+        console.log(err.message)
     }
 };
 

@@ -33,6 +33,7 @@ model Task {
   actualEndDate    DateTime?
   priority         String    @default("Medium")
   status           String    @default("Not Started")
+  assignedBy       String?
   
   assigneeId       String
   assignee         User      @relation("AssigneeTasks", fields: [assigneeId], references: [id])

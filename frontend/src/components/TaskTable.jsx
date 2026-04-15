@@ -58,6 +58,13 @@ const TaskTable = ({ tasks, loading, onEdit, onDelete, onViewHistory }) => {
             onFilter: (value, record) => record.assignee?.name === value,
         },
         {
+            title: 'Assigned By',
+            dataIndex: 'assignedBy',
+            key: 'assignedBy',
+            filters: Array.from(new Set(tasks.map(t => t.assignedBy))).filter(Boolean).map(name => ({ text: name, value: name })),
+            onFilter: (value, record) => record.assignedBy === value,
+        },
+        {
             title: 'Priority',
             dataIndex: 'priority',
             key: 'priority',
