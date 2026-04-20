@@ -10,7 +10,8 @@ const ASSIGNED_BY_LIST = [
     "Priya Sharma",
     "Anil Patel",
     "Kavita Verma",
-    "Amit Singh"
+    "Amit Singh",
+    "Others"
 ];
 
 const AddTaskModal = ({ visible, onCancel, onSave, editingTask, users }) => {
@@ -18,8 +19,18 @@ const AddTaskModal = ({ visible, onCancel, onSave, editingTask, users }) => {
 
     useEffect(() => {
         if (visible && editingTask) {
+            let assignedBy = editingTask.assignedBy;
+            let otherAssignedBy = undefined;
+
+            if (assignedBy && !ASSIGNED_BY_LIST.includes(assignedBy)) {
+                otherAssignedBy = assignedBy;
+                assignedBy = "Others";
+            }
+
             form.setFieldsValue({
                 ...editingTask,
+                assignedBy,
+                otherAssignedBy,
                 startDate: editingTask.startDate ? dayjs(editingTask.startDate) : null,
                 tentativeEndDate: editingTask.tentativeEndDate ? dayjs(editingTask.tentativeEndDate) : null,
                 assignee: editingTask.assignee?.id || editingTask.assignee,
@@ -32,10 +43,14 @@ const AddTaskModal = ({ visible, onCancel, onSave, editingTask, users }) => {
     const handleOk = () => {
         form.validateFields()
             .then(values => {
+                const finalAssignedBy = values.assignedBy === 'Others' ? values.otherAssignedBy : values.assignedBy;
+                const { otherAssignedBy, ...restValues } = values;
+
                 onSave({
-                    ...values,
-                    startDate: values.startDate.toDate(),
-                    tentativeEndDate: values.tentativeEndDate.toDate()
+                    ...restValues,
+                    assignedBy: finalAssignedBy,
+                    startDate: restValues.startDate.toDate(),
+                    tentativeEndDate: restValues.tentativeEndDate.toDate()
                 });
             })
             .catch(info => {
@@ -103,7 +118,12 @@ const AddTaskModal = ({ visible, onCancel, onSave, editingTask, users }) => {
                     label="Start Date"
                     rules={[{ required: true, message: 'Please select a start date!' }]}
                 >
-                    <DatePicker style={{ width: '100%' }} />
+                    <DatePicker
+                        style={{ width: '100%' }}
+                        disabledDate={(current) => {
+                            return current && current < dayjs().subtract(2, 'day').startOf('day');
+                        }}
+                    />
                 </Form.Item>
 
                 <Form.Item
@@ -144,12 +164,30 @@ const AddTaskModal = ({ visible, onCancel, onSave, editingTask, users }) => {
                 <Form.Item
                     name="assignedBy"
                     label="Assigned By"
+                    rules={[{ required: true, message: 'Please select who assigned this task!' }]}
                 >
                     <Select showSearch optionFilterProp="children" placeholder="Select who assigned this task">
                         {ASSIGNED_BY_LIST.map(name => (
                             <Option key={name} value={name}>{name}</Option>
                         ))}
                     </Select>
+                </Form.Item>
+
+                <Form.Item
+                    noStyle
+                    shouldUpdate={(prevValues, currentValues) => prevValues.assignedBy !== currentValues.assignedBy}
+                >
+                    {({ getFieldValue }) =>
+                        getFieldValue('assignedBy') === 'Others' ? (
+                            <Form.Item
+                                name="otherAssignedBy"
+                                label="Other Assigner Name"
+                                rules={[{ required: true, message: 'Please input the assigner name!' }]}
+                            >
+                                <Input placeholder="Enter assigner name" />
+                            </Form.Item>
+                        ) : null
+                    }
                 </Form.Item>
 
                 <Form.Item
