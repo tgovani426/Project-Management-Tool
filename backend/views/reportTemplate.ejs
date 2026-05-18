@@ -265,33 +265,7 @@
         </tbody>
     </table>
 
-    <!-- Section 3: Assignee Performance -->
-    <h2 class="section-title">Top Contributors (Completed Tasks)</h2>
-    <table>
-        <thead>
-            <tr>
-                <th>Assignee</th>
-                <th>Completed Tasks</th>
-            </tr>
-        </thead>
-        <tbody>
-            <% topContributors.forEach(function(contributor) { %>
-                <tr>
-                    <td>
-                        <%= contributor.name %>
-                    </td>
-                    <td>
-                        <%= contributor.completedCount %>
-                    </td>
-                </tr>
-                <% }); %>
-                    <% if (topContributors.length===0) { %>
-                        <tr>
-                            <td colspan="2" style="text-align: center;">No contributors yet</td>
-                        </tr>
-                        <% } %>
-        </tbody>
-    </table>
+
 
     <!-- Section 4: Detailed Task List -->
     <h2 class="section-title">Detailed Task List</h2>
@@ -353,9 +327,7 @@
         </tbody>
     </table>
 
-    <div class="footer">
-        Generated from Internal Task Tracker System &copy; <%= new Date().getFullYear() %>
-    </div>
+   
 
 </body>
 
