@@ -26,7 +26,7 @@ const getTasks = async (req, res) => {
 };
 
 const createTask = async (req, res) => {
-    const { title, track, description, comments, startDate, tentativeEndDate, priority, assignee, assignedBy } = req.body;
+    const { title, track, description, comments, startDate, tentativeEndDate, priority, status, assignee, assignedBy } = req.body;
 
     if (!title || !track || !startDate || !tentativeEndDate || !assignee) {
         return res.status(400).json({ message: 'Please provide required fields' });
@@ -43,7 +43,8 @@ const createTask = async (req, res) => {
                 startDate: new Date(startDate),
                 tentativeEndDate: new Date(tentativeEndDate),
                 priority,
-                status: 'Not Started',
+                status,
+                ...(status === 'Completed' ? { actualEndDate: new Date() } : {}),
                 assignee: { connect: { id: assignee } },
                 createdBy: { connect: { id: req.user.id } }
             },
